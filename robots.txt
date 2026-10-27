@@ -1,0 +1,8 @@
+# Diretivas para rastreadores; isto não é controle de acesso nem medida de segurança.
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /backup/
+Disallow: /.git/
+Disallow: /.env
