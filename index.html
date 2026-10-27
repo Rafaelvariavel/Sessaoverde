@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07110f">
+  <meta name="description" content="Sessão Verde — clássicos do cinema para assistir online, sem cadastro.">
+  <title>Sessão Verde — Cinema clássico</title>
+  <link rel="preconnect" href="https://cdn.hyperserve.io">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar" id="topo">
+    <a class="brand" href="#topo" aria-label="Sessão Verde — início">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M31.7 6.5C19.8 7.1 9 12.4 8.7 22.1c-.1 4.2 2.7 7.1 6.8 6.8C25.6 28.2 30.3 17.9 31.7 6.5Z" fill="currentColor"/><path d="M7 34c5.3-9.3 11-14.8 19.3-20.2" fill="none" stroke="#07110f" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+      <span class="brand-name">SESSÃO <b>VERDE</b></span>
+    </a>
+    <nav class="main-nav" aria-label="Navegação principal">
+      <a class="nav-link active" href="#inicio">Início</a>
+      <a class="nav-link" href="#catalogo">Filmes</a>
+      <a class="nav-link" href="#colecoes">Coleções</a>
+    </nav>
+    <div class="top-actions">
+      <label class="search-box" aria-label="Buscar filmes">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg>
+        <input type="search" id="searchInput" placeholder="Buscar filmes..." autocomplete="off">
+        <kbd>/</kbd>
+      </label>
+      <button class="saved-shortcut" id="showSaved" type="button" aria-label="Mostrar minha lista" title="Minha lista">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h12a1 1 0 0 1 1 1V21l-7-4-7 4V4.5a1 1 0 0 1 1-1Z"></path></svg>
+        <span>Minha lista</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio" aria-labelledby="heroTitle">
+      <div class="hero-backdrop" aria-hidden="true"></div>
+      <div class="hero-content">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> CINEMA CLÁSSICO · SEM CADASTRO</div>
+        <div class="hero-kicker">DE VOLTA À TELA</div>
+        <h1 id="heroTitle">Grandes histórias.<br><em>Tempo nenhum</em> para esquecer.</h1>
+        <p class="hero-copy">Uma seleção de clássicos, aventuras e mistérios para redescobrir o cinema — direto no navegador.</p>
+        <div class="hero-meta"><span class="age-tag">LIVRE</span><span>Clássicos restaurados</span><span class="meta-separator">•</span><span>Áudio e legendas conforme o filme</span></div>
+        <div class="hero-buttons">
+          <button class="button button-primary" type="button" id="heroPlay"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7Z" fill="currentColor" stroke="none"></path></svg> Assistir agora</button>
+          <a class="button button-secondary" href="#catalogo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M3 12h18"></path></svg> Explorar catálogo</a>
+        </div>
+        <div class="hero-footnote"><span class="tiny-line"></span> UMA CURADORIA PARA AMANTES DO CINEMA</div>
+      </div>
+      <div class="hero-side-note"><span>01</span><i></i><span>CLÁSSICO EM DESTAQUE</span></div>
+      <button class="hero-down" type="button" aria-label="Rolar para o catálogo" id="scrollCatalog"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></button>
+    </section>
+
+    <section class="content-section" id="catalogo">
+      <div class="section-head">
+        <div>
+          <p class="section-eyebrow">ESCOLHA SUA PRÓXIMA SESSÃO</p>
+          <h2>O catálogo <span>clássico</span></h2>
+        </div>
+        <div class="catalog-count" id="catalogCount">05 FILMES DISPONÍVEIS</div>
+      </div>
+
+      <div class="filter-bar" role="group" aria-label="Filtrar por gênero">
+        <button class="filter-chip selected" data-filter="Todos" type="button">Todos</button>
+        <button class="filter-chip" data-filter="Suspense" type="button">Suspense</button>
+        <button class="filter-chip" data-filter="Terror" type="button">Terror</button>
+        <button class="filter-chip" data-filter="Aventura" type="button">Aventura</button>
+        <button class="filter-chip" data-filter="Ficção científica" type="button">Ficção científica</button>
+        <button class="filter-chip" data-filter="Cinema mudo" type="button">Cinema mudo</button>
+      </div>
+
+      <div class="results-status" id="resultsStatus" aria-live="polite"></div>
+      <div class="movie-grid" id="movieGrid" aria-label="Filmes do catálogo"></div>
+      <div class="empty-state" id="emptyState" hidden>
+        <div class="empty-icon">⌕</div>
+        <h3>Nenhum filme encontrado</h3>
+        <p>Tente outro título ou remova os filtros.</p>
+        <button class="button button-secondary" type="button" id="clearSearch">Limpar busca</button>
+      </div>
+    </section>
+
+    <section class="collection-band" id="colecoes">
+      <div class="collection-copy">
+        <p class="section-eyebrow">A HISTÓRIA DO CINEMA EM OUTRO RITMO</p>
+        <h2>Antes dos efeitos.<br><em>Vieram as ideias.</em></h2>
+        <p>Do expressionismo alemão à ficção científica pioneira, descubra obras que abriram caminho para tudo o que veio depois.</p>
+        <a href="#catalogo" class="text-link">Descobrir os clássicos <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="collection-art" aria-hidden="true">
+        <div class="art-glow"></div>
+        <div class="film-frame frame-one"><img src="img/caligari.jpg" alt=""></div>
+        <div class="film-frame frame-two"><img src="img/mundo-perdido.jpg" alt=""></div>
+        <div class="film-frame frame-three"><img src="img/potemkin.jpg" alt=""></div>
+      </div>
+    </section>
+
+    <section class="bottom-note">
+      <span class="bottom-mark"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M31.7 6.5C19.8 7.1 9 12.4 8.7 22.1c-.1 4.2 2.7 7.1 6.8 6.8C25.6 28.2 30.3 17.9 31.7 6.5Z" fill="currentColor"/><path d="M7 34c5.3-9.3 11-14.8 19.3-20.2" fill="none" stroke="#07110f" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+      <p>O cinema muda. As boas histórias ficam.</p>
+      <a href="#topo">Voltar ao topo ↑</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© <span id="year"></span> Sessão Verde</span>
+    <span>Um espaço para redescobrir o cinema clássico.</span>
+    <span class="footer-status"><i></i> Reprodução online</span>
+  </footer>
+
+  <div class="modal" id="movieModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-scrim" data-close-modal></div>
+    <div class="modal-panel">
+      <button class="modal-close" type="button" id="closeModal" aria-label="Fechar player">×</button>
+      <div class="player-wrap" id="playerWrap">
+        <video id="moviePlayer" controls playsinline preload="metadata"></video>
+        <div class="player-fallback" id="playerFallback" hidden>
+          <span class="fallback-icon">!</span>
+          <strong>Não foi possível iniciar este vídeo.</strong>
+          <p>O link pode ter expirado ou o servidor pode estar indisponível.</p>
+          <button type="button" class="button button-secondary" id="retryVideo">Tentar novamente</button>
+        </div>
+      </div>
+      <div class="modal-info">
+        <div class="modal-heading-row">
+          <div>
+            <p class="modal-kicker" id="modalKicker">SESSÃO VERDE ORIGINAL</p>
+            <h2 id="modalTitle">Título do filme</h2>
+          </div>
+          <button class="save-button" id="modalSave" type="button"><span>＋</span> Minha lista</button>
+        </div>
+        <div class="modal-meta" id="modalMeta"></div>
+        <p class="modal-description" id="modalDescription"></p>
+        <p class="stream-note">O vídeo é carregado do servidor que hospeda o filme. A disponibilidade depende desse serviço.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
